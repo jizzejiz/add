@@ -2,58 +2,104 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NUnit.Framework;
+using Triangle;
+
 using System.Threading.Tasks;
 
-namespace Triangle
+namespace ClassLibrary1
 {
-    public static class TriangleSolver
+    public class Class1
     {
-         public static string Analyze(int side1, int side2, int side3)
+
+        [TestFixture]
+
+        public class Triangle
         {
-            string answer = string .Empty ;
+            [Test]
 
-
-            if (side1 + side2 > side3 || side2 + side3 > side1 || side1 + side3 > side2)
+            public void InputSides_4_4_4_Expected_FormsEquilateral()
             {
+                //Arrange
+                int trs1 = 4;
+                int trs2 = 4;
+                int trs3 = 4;
+                string expected = "Forms Equilateral";
 
-                if ((side1 == side2) && (side1 == side3))
-                {
-                    answer = ("Forms Equilateral");
+                //Act
+                string actual = TriangleSolver.Analyze(trs1, trs2, trs3);
 
-                }
-                else if ((side1 == side2) || (side2 == side3) || (side1 == side3))
-                {
-                    answer = ("Forms Isosceles");
-                   
+                //Assert
 
-                }
-                else
-                {
-                    answer = ("Forms Scalene");
+                Assert.AreEqual(expected, actual);
 
-                }
+
 
             }
-            else
+
+            [Test]
+
+            public void InputSides_40_50_60_Expected_FormsScalene()
             {
-                answer=("triangle cannot be created");
+                //Arrange
+                int trs1 = 40;
+                int trs2 = 50;
+                int trs3 = 60;
+                string expected = "Forms Scalene";
+
+                //Act
+                string actual = TriangleSolver.Analyze(trs1, trs2, trs3);
+
+                //Assert
+
+                Assert.AreEqual(expected, actual);
+
+
+
             }
-            return answer;
+
+
+            [Test]
+
+            public void InputSides_40_40_40_Expected_FormsEquilateral()
+            {
+                //Arrange
+                int trs1 = 40;
+                int trs2 = 40;
+                int trs3 = 40;
+                string expected = "Forms Equilateral";
+
+                //Act
+                string actual = TriangleSolver.Analyze(trs1, trs2, trs3);
+
+                //Assert
+
+                Assert.AreEqual(expected, actual);
+
+
+            }
+            [Test]
+
+            public void InputSides_0_0_0_Expected_Formstrianglecannotbecreated()
+            {
+                //Arrange
+                int trs1 = 0;
+                int trs2 = 0;
+                int trs3 = 0;
+                string expected = "triangle cannot be created";
+
+                //Act
+                string actual = TriangleSolver.Analyze(trs1, trs2, trs3);
+
+
+                //Assert
+
+                Assert.AreEqual(expected, actual);
+
+            }
+
 
 
         }
-
-        
     }
 }
-
-
-
-
-
-
-
-
-
-
-
